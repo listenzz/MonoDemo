@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native'
 import { withNavigationItem } from 'hybrid-navigation'
+import { DEFAULT_NAME, log } from '@sdcx/common'
+import { Flower } from '@sdcx/module-b'
 
 interface Props {
   name: string
@@ -11,13 +13,25 @@ function Welcome(props: Props) {
 }
 
 function App() {
-  const [name, setName] = useState('Sara')
+  const [name, setName] = useState(DEFAULT_NAME)
   const [text, setText] = useState('')
+
   return (
     <View style={styles.container}>
-      <Welcome name={name} />
+      <View style={styles.row}>
+        <Flower />
+        <Welcome name={name} />
+      </View>
       <TextInput value={text} onChangeText={setText} style={styles.input} />
-      <Button title="确定" onPress={() => setName(text)} />
+
+      <Button
+        title="确定"
+        onPress={() => {
+          const n = text || DEFAULT_NAME
+          log(`向 ${n} 打招呼`)
+          setName(n)
+        }}
+      />
     </View>
   )
 }
@@ -40,6 +54,10 @@ const styles = StyleSheet.create({
     paddingTop: 16,
     paddingLeft: 32,
     paddingRight: 32,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   text: {
     backgroundColor: 'transparent',

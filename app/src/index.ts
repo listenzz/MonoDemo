@@ -1,12 +1,9 @@
 import App from './App'
-import { ReactRegistry, Garden, Navigator } from 'hybrid-navigation'
-import { Platform } from 'react-native'
+import { ReactRegistry, Navigator } from 'hybrid-navigation'
+import { setupGlobalStyle } from '@sdcx/module-a'
 
 // 配置全局样式
-Garden.setStyle({
-  topBarStyle: 'dark-content',
-  statusBarColorAndroid: Platform.Version > 21 ? undefined : '#4A4A4A',
-})
+setupGlobalStyle()
 
 // 重要必须
 ReactRegistry.startRegisterComponent()

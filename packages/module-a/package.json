@@ -1,0 +1,8 @@
+{
+  "name": "@sdcx/module-a",
+  "version": "1.0.0",
+  "main": "src/index",
+  "dependencies": {
+    "@sdcx/common": "1.0.0"
+  }
+}
